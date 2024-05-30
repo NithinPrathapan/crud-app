@@ -12,6 +12,13 @@ const Users = () => {
     };
     getUsers();
   }, []);
+  const handleDelete = async (id) => {
+    const response = await axios.delete(
+      "http://localhost:3001/deleteUser/" + id
+    );
+    console.log(response);
+    window.location.reload();
+  };
   return (
     <div className="flex h-screen bg-blue-400 justify-center items-center">
       <div className="flex w-[80%] flex-col gap-4 bg-white rounded p-3">
@@ -45,10 +52,16 @@ const Users = () => {
                       <button>Edit</button>
                     </Link>
                     <Link
-                      to="/delete"
+                      to=""
                       className="bg-red-500 p-1 rounded-md text-white w-[60px]"
                     >
-                      <button>Delete</button>
+                      <button
+                        onClick={() => {
+                          handleDelete(user._id);
+                        }}
+                      >
+                        Delete
+                      </button>
                     </Link>
                   </td>
                 </tr>

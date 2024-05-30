@@ -7,16 +7,18 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const navigate = useNavigate();
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
     try {
-      let response = axios.post("http://localhost:3001/createUser", {
+      const response = await axios.post("http://localhost:3001/createUser", {
         name: name,
         email: email,
         age: age,
       });
-      console.log(response.data);
-      navigate("/");
+      console.log(response);
+      if (response.status === 200) {
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }

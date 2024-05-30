@@ -41,6 +41,13 @@ app.put("/updateUser/:id", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.delete("/deleteUser/:id", (req, res) => {
+  const id = req.params.id;
+  UserModel.findByIdAndDelete({ _id: id })
+    .then((users) => res.json(users))
+    .catch((err) => res.json(err));
+});
+
 app.listen(3001, () => {
   console.log("server is running on 3001");
 });
