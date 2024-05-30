@@ -2,14 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import UserModel from "./models/users.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://nithin:12345@cluster0.fdrhbt2.mongodb.net/");
+mongoose.connect(process.env.MONGO_URL);
 
 app.post("/createUser", (req, res) => {
   console.log(req.body);
